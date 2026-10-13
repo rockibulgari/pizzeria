@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пицца Назрань — горячая пицца с доставкой</title>
+  <meta name="description" content="Пиццерия в Назрани. Доставка за 30–55 минут, бесплатно от 600 ₽.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== Блок 0. Шапка ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo">
+        <span class="logo__icon" aria-hidden="true">🍕</span>
+        <span class="logo__text">Пицца <b>Назрань</b></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Основное меню">
+        <a href="#menu" class="nav__link">Меню</a>
+        <a href="#promo" class="nav__link">Акции</a>
+        <a href="#delivery" class="nav__link">Доставка</a>
+        <a href="#reviews" class="nav__link">Отзывы</a>
+        <a href="#contacts" class="nav__link">Контакты</a>
+        <a href="tel:+79280000000" class="nav__phone nav__phone--mobile">+7 (928) 000-00-00</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="tel:+79280000000" class="header__phone">+7 (928) 000-00-00</a>
+        <a href="#order" class="btn btn--red btn--small">Заказать</a>
+        <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== Блок 1. Первый экран ===== -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="hero__city">Пиццерия в Назрани</p>
+          <h1 class="hero__title">Горячая пицца <span class="accent">к вашему столу</span></h1>
+          <p class="hero__text">
+            Тонкое тесто, много сыра, только говядина и курица.
+            Готовим сразу после заказа и привозим горячей.
+          </p>
+
+          <ul class="hero__badges">
+            <li class="badge badge--yellow">⏱ 30–55 минут</li>
+            <li class="badge badge--green">🚚 Бесплатно от 600 ₽</li>
+          </ul>
+
+          <div class="hero__order" id="order">
+            <a href="tel:+79280000000" class="btn btn--red">📞 Позвонить</a>
+            <a href="https://t.me/pizza_nazran_demo" class="btn btn--tg" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://wa.me/79280000000" class="btn btn--wa" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <!-- Заглушка фото. Чтобы поставить настоящее фото, замените этот div на:
+               <img src="img/hero-pizza.jpg" alt="Пицца Пепперони" class="hero__photo"> -->
+          <div class="photo-placeholder" role="img" aria-label="Здесь будет фото пиццы">
+            <span class="photo-placeholder__icon" aria-hidden="true">🍕</span>
+            <span class="photo-placeholder__text">Здесь будет фото пиццы</span>
+          </div>
+
+          <div class="hero__sticker">
+            <span class="hero__sticker-big">от 450 ₽</span>
+            <span class="hero__sticker-small">пицца 30 см</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
