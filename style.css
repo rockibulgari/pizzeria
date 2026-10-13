@@ -471,6 +471,117 @@ a {
   width: 100%;
 }
 
+/* ===== Блок 3. Акции и комбо ===== */
+.promo {
+  padding: 80px 0;
+}
+
+.promo__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* Яркая плашка акции */
+.promo-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 28px 28px;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.promo-card:hover {
+  transform: translateY(-6px) rotate(-0.5deg);
+}
+
+.promo-card--red {
+  background: var(--red);
+  color: var(--white);
+  box-shadow: 0 14px 34px rgba(200, 50, 43, 0.3);
+}
+
+.promo-card--yellow {
+  background: var(--yellow);
+  color: var(--text);
+  box-shadow: 0 14px 34px rgba(255, 201, 60, 0.4);
+}
+
+.promo-card--green {
+  background: var(--green);
+  color: var(--white);
+  box-shadow: 0 14px 34px rgba(47, 125, 74, 0.3);
+}
+
+/* Наклонная наклейка «Студентам», «Семьям» */
+.promo-card__label {
+  align-self: flex-start;
+  margin-bottom: 20px;
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: var(--cream);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  transform: rotate(-3deg);
+}
+
+/* Большой полупрозрачный значок в углу */
+.promo-card__icon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 110px;
+  line-height: 1;
+  opacity: 0.25;
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+
+.promo-card__title {
+  position: relative;
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.promo-card__text {
+  margin: 0 0 20px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.promo-card__price {
+  margin: auto 0 8px; /* auto прижимает цену, условия и кнопку к низу */
+  font-size: clamp(48px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.promo-card__terms {
+  margin: 0 0 24px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Кнопка: кремовая на красном и зелёном, красная на жёлтом */
+.promo-card__btn {
+  width: 100%;
+  background: var(--cream);
+}
+
+.promo-card--red .promo-card__btn { color: var(--red); }
+.promo-card--green .promo-card__btn { color: var(--green); }
+.promo-card--red .promo-card__btn:hover,
+.promo-card--green .promo-card__btn:hover { background: var(--white); }
+
+.promo-card--yellow .promo-card__btn { background: var(--red); color: var(--white); }
+.promo-card--yellow .promo-card__btn:hover { background: var(--red-dark); }
+
 /* ===== Адаптив ===== */
 @media (max-width: 1024px) {
   .header__phone {
@@ -540,6 +651,18 @@ a {
 
   .menu {
     padding: 56px 0;
+  }
+
+  /* Акции — друг под другом */
+  .promo {
+    padding: 56px 0;
+  }
+
+  .promo__grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+    gap: 20px;
   }
 }
 
@@ -642,6 +765,31 @@ a {
   .pizza-card__btn {
     padding: 10px 12px;
     font-size: 15px;
+  }
+
+  .promo-card {
+    padding: 28px 20px 20px;
+  }
+
+  .promo-card__icon {
+    font-size: 80px;
+  }
+
+  .promo-card__title {
+    font-size: 24px;
+  }
+
+  .promo-card__text {
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+  .promo-card__price {
+    font-size: 48px;
+  }
+
+  .promo-card__terms {
+    margin-bottom: 18px;
   }
 }
 
