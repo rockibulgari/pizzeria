@@ -388,7 +388,105 @@
       </div>
     </section>
 
+    <!-- ===== Блок 6. Контакты ===== -->
+    <section class="contacts" id="contacts">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Наши <span class="accent">контакты</span></h2>
+          <p class="section-subtitle">Звоните, пишите — привезём горячей.</p>
+        </div>
+
+        <div class="contacts__inner">
+          <div class="contacts__info">
+            <ul class="contact-list">
+              <li class="contact-item">
+                <span class="contact-item__icon" aria-hidden="true">📍</span>
+                <div>
+                  <span class="contact-item__label">Адрес</span>
+                  <span class="contact-item__value">г. Назрань, ул. Примерная, 1</span>
+                </div>
+              </li>
+              <li class="contact-item">
+                <span class="contact-item__icon" aria-hidden="true">📞</span>
+                <div>
+                  <span class="contact-item__label">Телефон</span>
+                  <a href="tel:+79280000000" class="contact-item__value contact-item__link">+7 (928) 000-00-00</a>
+                </div>
+              </li>
+              <li class="contact-item">
+                <span class="contact-item__icon" aria-hidden="true">✈️</span>
+                <div>
+                  <span class="contact-item__label">Telegram</span>
+                  <a href="https://t.me/pizza_nazran_demo" class="contact-item__value contact-item__link" target="_blank" rel="noopener">@pizza_nazran_demo</a>
+                </div>
+              </li>
+              <li class="contact-item">
+                <span class="contact-item__icon" aria-hidden="true">💬</span>
+                <div>
+                  <span class="contact-item__label">WhatsApp</span>
+                  <a href="https://wa.me/79280000000" class="contact-item__value contact-item__link" target="_blank" rel="noopener">+7 (928) 000-00-00</a>
+                </div>
+              </li>
+            </ul>
+
+            <div class="contacts__hours">
+              <span class="contacts__hours-icon" aria-hidden="true">🕙</span>
+              <div>
+                <span class="contacts__hours-label">Часы работы</span>
+                <span class="contacts__hours-value">Ежедневно 10:00–23:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Яндекс.Карта: центр Назрани, без метки. Двигается и приближается прямо на странице -->
+          <div class="map" id="map">
+            <iframe
+              class="map__frame"
+              src="https://yandex.ru/map-widget/v1/?ll=44.765300%2C43.226400&z=14"
+              title="Яндекс.Карта — центр Назрани"
+              loading="lazy"
+              allowfullscreen></iframe>
+
+            <!-- На телефоне: защита от случайного захвата карты при листании -->
+            <button class="map__cover" id="mapCover" type="button">
+              <span class="map__cover-text">👆 Нажмите, чтобы двигать карту</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- ===== Блок 7. Подвал ===== -->
+  <footer class="footer" id="footer">
+    <div class="container footer__inner">
+      <a href="#top" class="logo footer__logo">
+        <span class="logo__icon" aria-hidden="true">🍕</span>
+        <span class="logo__text">Пицца <b>Назрань</b></span>
+      </a>
+
+      <div class="footer__order">
+        <a href="tel:+79280000000" class="btn btn--red btn--small">📞 Позвонить</a>
+        <a href="https://t.me/pizza_nazran_demo" class="btn btn--tg btn--small" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://wa.me/79280000000" class="btn btn--wa btn--small" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+
+      <p class="footer__note">Учебный проект, данные выдуманы</p>
+    </div>
+  </footer>
+
+  <!-- ===== Плавающая кнопка «Заказать» (только на телефоне) ===== -->
+  <div class="fab" id="fab">
+    <div class="fab__menu" id="fabMenu">
+      <a href="tel:+79280000000" class="btn btn--red fab__link">📞 Позвонить</a>
+      <a href="https://t.me/pizza_nazran_demo" class="btn btn--tg fab__link" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://wa.me/79280000000" class="btn btn--wa fab__link" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <button class="btn btn--red fab__toggle" id="fabToggle" type="button" aria-expanded="false" aria-controls="fabMenu">
+      <span class="fab__toggle-text">🍕 Заказать</span>
+    </button>
+  </div>
 
   <script src="script.js"></script>
 </body>
