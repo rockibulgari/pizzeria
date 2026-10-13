@@ -438,7 +438,7 @@ a {
   color: var(--text-soft);
 }
 
-/* Размеры с ценами */
+/* Размеры с ценами — это и выбор размера: нажали на 30 или 40 см */
 .pizza-card__sizes {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -449,12 +449,33 @@ a {
 }
 
 .size {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 8px;
+  border: 2px solid transparent;
   border-radius: 12px;
   background: var(--cream);
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+/* Сам кружок радио-кнопки прячем — выбранный размер видно по красной рамке */
+.size__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.size:has(.size__input:checked) {
+  border-color: var(--red);
+  background: #fdecea;
+}
+
+.size:has(.size__input:focus-visible) {
+  outline: 3px solid var(--yellow);
+  outline-offset: 2px;
 }
 
 .size__label {
@@ -469,6 +490,9 @@ a {
 
 .pizza-card__btn {
   width: 100%;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 /* ===== Блок 3. Акции и комбо ===== */
@@ -1103,6 +1127,503 @@ a {
   background: var(--text);
 }
 
+/* ===== Кнопки «−» и «+» с числом (количество в корзине) ===== */
+.qty__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  font-family: inherit;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s, opacity 0.15s;
+}
+
+.qty__btn--minus {
+  background: var(--cream-dark);
+  color: var(--text);
+}
+
+.qty__btn--plus {
+  background: var(--red);
+  color: var(--white);
+}
+
+.qty__btn--plus:hover {
+  background: var(--red-dark);
+}
+
+.qty__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.qty__value {
+  min-width: 36px;
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* ===== Значок корзины в шапке ===== */
+.cart-btn {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: var(--cream-dark);
+  font-size: 22px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.cart-btn:hover {
+  background: #efd9b8;
+}
+
+/* Красный кружок с количеством пицц */
+.cart-btn__count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--red);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 22px;
+  text-align: center;
+}
+
+.cart-btn__count[hidden] {
+  display: none;
+}
+
+/* ===== Уведомление «Добавлено в корзину» ===== */
+.toast {
+  position: fixed;
+  top: calc(var(--header-height) + 12px);
+  left: 50%;
+  z-index: 200;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(43, 29, 22, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -10px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+}
+
+.toast--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* ===== Окно корзины ===== */
+/* Пока окно открыто, страница под ним не листается */
+body:has(.cart[open]) {
+  overflow: hidden;
+}
+
+/* Выезжает справа на всю высоту */
+.cart {
+  width: min(460px, 100%);
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: none;
+  background: var(--cream);
+  color: var(--text);
+  box-shadow: -10px 0 40px rgba(43, 29, 22, 0.2);
+}
+
+.cart[open] {
+  display: flex;
+  flex-direction: column;
+  animation: cart-in 0.25s ease-out;
+}
+
+@keyframes cart-in {
+  from { transform: translateX(40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.cart::backdrop {
+  background: rgba(43, 29, 22, 0.45);
+}
+
+/* hidden должен скрывать элементы, даже если у них свой display */
+.cart [hidden] {
+  display: none !important;
+}
+
+.cart__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.cart__title {
+  flex: 1;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.cart__back,
+.cart__close {
+  flex-shrink: 0;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  background: var(--cream-dark);
+  color: var(--text);
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cart__back {
+  padding: 0 14px;
+  font-size: 15px;
+}
+
+.cart__close {
+  width: 44px;
+  margin-left: auto;
+  font-size: 20px;
+}
+
+/* Шаг занимает всё окно: середина листается, низ с итогом всегда виден */
+.cart__view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.cart__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+.cart__foot {
+  padding: 16px 20px calc(16px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--cream-dark);
+  background: var(--white);
+}
+
+.cart__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 0;
+  text-align: center;
+  color: var(--text-soft);
+}
+
+.cart__empty p {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.cart__empty-icon {
+  font-size: 56px;
+}
+
+/* Позиция корзины: название и сумма сверху, «− 2 +» и «Удалить» снизу */
+.cart__items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--white);
+  box-shadow: 0 4px 16px rgba(43, 29, 22, 0.05);
+}
+
+.cart-item__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cart-item__name {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.cart-item__meta {
+  font-size: 14px;
+  color: var(--text-soft);
+}
+
+.cart-item__cost {
+  font-size: 18px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.cart-item__qty {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cart-item__remove {
+  justify-self: end;
+  min-height: 44px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--red);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cart-item__remove:hover {
+  background: #fdecea;
+}
+
+.cart__promo {
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--yellow);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.cart__totals {
+  margin: 0 0 12px;
+}
+
+.cart__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+  font-size: 16px;
+  color: var(--text-soft);
+}
+
+.cart__row dt,
+.cart__row dd {
+  margin: 0;
+}
+
+.cart__row dd {
+  white-space: nowrap;
+}
+
+.cart__row--discount {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.cart__row--total {
+  margin: 6px 0 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.cart__taxi {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fdecea;
+  color: var(--red-dark);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.cart__discount-note {
+  margin: 0;
+  font-size: 14px;
+  color: var(--green);
+  font-weight: 500;
+}
+
+.cart__action {
+  width: 100%;
+  margin-top: 12px;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ===== Форма заказа ===== */
+.field {
+  margin-bottom: 16px;
+}
+
+.field__label {
+  display: block;
+  margin-bottom: 6px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.field__optional {
+  font-weight: 400;
+  color: var(--text-soft);
+}
+
+.field__input {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  border: 2px solid var(--cream-dark);
+  border-radius: 12px;
+  background: var(--white);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 17px; /* не меньше 16px — иначе iPhone приближает страницу при вводе */
+  transition: border-color 0.15s;
+}
+
+.field__input:focus {
+  border-color: var(--green);
+  outline: none;
+}
+
+.field__input--area {
+  resize: vertical;
+}
+
+/* Пустое обязательное поле — красная рамка и подсказка */
+.field__error {
+  display: none;
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--red);
+}
+
+.field--error .field__input {
+  border-color: var(--red);
+  background: #fff5f4;
+}
+
+.field--error .field__error {
+  display: block;
+}
+
+/* Способ оплаты */
+.payment {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.payment__option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  border: 2px solid var(--cream-dark);
+  border-radius: 12px;
+  background: var(--white);
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.payment__option:has(input:checked) {
+  border-color: var(--green);
+  background: #eef6ef;
+}
+
+.payment__option input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--green);
+}
+
+.payment__demo {
+  margin: 4px 0 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--yellow);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Шаг «Куда отправить заказ» */
+.send {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.send__text {
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.send__btn {
+  width: 100%;
+  padding: 18px 20px;
+  font-size: 20px;
+}
+
+.send__status {
+  margin: 4px 0 0;
+  font-size: 16px;
+  color: var(--green);
+  font-weight: 500;
+  text-align: center;
+}
+
 /* ===== Адаптив ===== */
 @media (max-width: 1024px) {
   .header__phone {
@@ -1315,7 +1836,7 @@ a {
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
-    padding: 6px 10px;
+    padding: 8px 10px;
     border-radius: 10px;
   }
 
@@ -1478,11 +1999,36 @@ a {
   .fab {
     display: flex;
   }
+
+  /* Корзина на телефоне — на весь экран */
+  .cart {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .cart__head,
+  .cart__body,
+  .cart__foot {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .cart-item {
+    padding: 12px;
+  }
 }
 
 @media (max-width: 480px) {
   body {
     font-size: 16px;
+  }
+
+  .header__actions {
+    gap: 10px;
+  }
+
+  .toast {
+    font-size: 15px;
   }
 
   .logo {

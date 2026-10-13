@@ -34,6 +34,11 @@
       <div class="header__actions">
         <a href="tel:+79280000000" class="header__phone">+7 (928) 000-00-00</a>
         <a href="#order" class="btn btn--red btn--small">Заказать</a>
+        <!-- Значок корзины: число — сколько пицц в корзине -->
+        <button class="cart-btn" id="cartButton" type="button" aria-label="Корзина: пусто" aria-haspopup="dialog">
+          <span class="cart-btn__icon" aria-hidden="true">🛒</span>
+          <span class="cart-btn__count" id="cartCount" aria-hidden="true" hidden>0</span>
+        </button>
         <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
           <span></span><span></span><span></span>
         </button>
@@ -92,6 +97,7 @@
 
         <!-- Чтобы поставить настоящее фото, замените div.photo-placeholder в карточке на:
              <img src="img/margarita.jpg" alt="Пицца Маргарита" class="pizza-card__img"> -->
+        <!-- Размер выбирается кнопками 30 / 40 см, кнопка «В корзину» берёт выбранный размер (script.js) -->
         <div class="menu__grid">
           <article class="pizza-card">
             <div class="pizza-card__photo">
@@ -102,11 +108,11 @@
             </div>
             <h3 class="pizza-card__title">Маргарита</h3>
             <p class="pizza-card__text">Томатный соус, моцарелла, базилик</p>
-            <ul class="pizza-card__sizes">
-              <li class="size"><span class="size__label">30 см</span><span class="size__price">450 ₽</span></li>
-              <li class="size"><span class="size__label">40 см</span><span class="size__price">690 ₽</span></li>
-            </ul>
-            <a href="https://t.me/pizza_nazran_demo" class="btn btn--red pizza-card__btn" target="_blank" rel="noopener">Заказать</a>
+            <div class="pizza-card__sizes" role="radiogroup" aria-label="Размер">
+              <label class="size"><input class="size__input" type="radio" name="size-margarita" value="30" checked><span class="size__label">30 см</span><span class="size__price" data-price="margarita" data-size="30">450 ₽</span></label>
+              <label class="size"><input class="size__input" type="radio" name="size-margarita" value="40"><span class="size__label">40 см</span><span class="size__price" data-price="margarita" data-size="40">690 ₽</span></label>
+            </div>
+            <button class="btn btn--red pizza-card__btn" type="button" data-add-to-cart="margarita">В корзину</button>
           </article>
 
           <article class="pizza-card">
@@ -118,11 +124,11 @@
             </div>
             <h3 class="pizza-card__title">Грибная</h3>
             <p class="pizza-card__text">Сливочный соус, шампиньоны, моцарелла</p>
-            <ul class="pizza-card__sizes">
-              <li class="size"><span class="size__label">30 см</span><span class="size__price">490 ₽</span></li>
-              <li class="size"><span class="size__label">40 см</span><span class="size__price">740 ₽</span></li>
-            </ul>
-            <a href="https://t.me/pizza_nazran_demo" class="btn btn--red pizza-card__btn" target="_blank" rel="noopener">Заказать</a>
+            <div class="pizza-card__sizes" role="radiogroup" aria-label="Размер">
+              <label class="size"><input class="size__input" type="radio" name="size-mushroom" value="30" checked><span class="size__label">30 см</span><span class="size__price" data-price="mushroom" data-size="30">490 ₽</span></label>
+              <label class="size"><input class="size__input" type="radio" name="size-mushroom" value="40"><span class="size__label">40 см</span><span class="size__price" data-price="mushroom" data-size="40">740 ₽</span></label>
+            </div>
+            <button class="btn btn--red pizza-card__btn" type="button" data-add-to-cart="mushroom">В корзину</button>
           </article>
 
           <article class="pizza-card">
@@ -135,11 +141,11 @@
             </div>
             <h3 class="pizza-card__title">Пепперони</h3>
             <p class="pizza-card__text">Пепперони из говядины, моцарелла</p>
-            <ul class="pizza-card__sizes">
-              <li class="size"><span class="size__label">30 см</span><span class="size__price">550 ₽</span></li>
-              <li class="size"><span class="size__label">40 см</span><span class="size__price">820 ₽</span></li>
-            </ul>
-            <a href="https://t.me/pizza_nazran_demo" class="btn btn--red pizza-card__btn" target="_blank" rel="noopener">Заказать</a>
+            <div class="pizza-card__sizes" role="radiogroup" aria-label="Размер">
+              <label class="size"><input class="size__input" type="radio" name="size-pepperoni" value="30" checked><span class="size__label">30 см</span><span class="size__price" data-price="pepperoni" data-size="30">550 ₽</span></label>
+              <label class="size"><input class="size__input" type="radio" name="size-pepperoni" value="40"><span class="size__label">40 см</span><span class="size__price" data-price="pepperoni" data-size="40">820 ₽</span></label>
+            </div>
+            <button class="btn btn--red pizza-card__btn" type="button" data-add-to-cart="pepperoni">В корзину</button>
           </article>
 
           <article class="pizza-card">
@@ -152,11 +158,11 @@
             </div>
             <h3 class="pizza-card__title">Четыре сыра</h3>
             <p class="pizza-card__text">Моцарелла, чеддер, пармезан, дорблю</p>
-            <ul class="pizza-card__sizes">
-              <li class="size"><span class="size__label">30 см</span><span class="size__price">590 ₽</span></li>
-              <li class="size"><span class="size__label">40 см</span><span class="size__price">860 ₽</span></li>
-            </ul>
-            <a href="https://t.me/pizza_nazran_demo" class="btn btn--red pizza-card__btn" target="_blank" rel="noopener">Заказать</a>
+            <div class="pizza-card__sizes" role="radiogroup" aria-label="Размер">
+              <label class="size"><input class="size__input" type="radio" name="size-four-cheese" value="30" checked><span class="size__label">30 см</span><span class="size__price" data-price="four-cheese" data-size="30">590 ₽</span></label>
+              <label class="size"><input class="size__input" type="radio" name="size-four-cheese" value="40"><span class="size__label">40 см</span><span class="size__price" data-price="four-cheese" data-size="40">860 ₽</span></label>
+            </div>
+            <button class="btn btn--red pizza-card__btn" type="button" data-add-to-cart="four-cheese">В корзину</button>
           </article>
 
           <article class="pizza-card">
@@ -169,11 +175,11 @@
             </div>
             <h3 class="pizza-card__title">Мясная</h3>
             <p class="pizza-card__text">Говядина, курица, колбаски, лук</p>
-            <ul class="pizza-card__sizes">
-              <li class="size"><span class="size__label">30 см</span><span class="size__price">650 ₽</span></li>
-              <li class="size"><span class="size__label">40 см</span><span class="size__price">920 ₽</span></li>
-            </ul>
-            <a href="https://t.me/pizza_nazran_demo" class="btn btn--red pizza-card__btn" target="_blank" rel="noopener">Заказать</a>
+            <div class="pizza-card__sizes" role="radiogroup" aria-label="Размер">
+              <label class="size"><input class="size__input" type="radio" name="size-meat" value="30" checked><span class="size__label">30 см</span><span class="size__price" data-price="meat" data-size="30">650 ₽</span></label>
+              <label class="size"><input class="size__input" type="radio" name="size-meat" value="40"><span class="size__label">40 см</span><span class="size__price" data-price="meat" data-size="40">920 ₽</span></label>
+            </div>
+            <button class="btn btn--red pizza-card__btn" type="button" data-add-to-cart="meat">В корзину</button>
           </article>
 
           <article class="pizza-card">
@@ -186,11 +192,11 @@
             </div>
             <h3 class="pizza-card__title">Фирменная «Назрань»</h3>
             <p class="pizza-card__text">Курица, говядина, перец, зелень, острый соус</p>
-            <ul class="pizza-card__sizes">
-              <li class="size"><span class="size__label">30 см</span><span class="size__price">690 ₽</span></li>
-              <li class="size"><span class="size__label">40 см</span><span class="size__price">950 ₽</span></li>
-            </ul>
-            <a href="https://t.me/pizza_nazran_demo" class="btn btn--red pizza-card__btn" target="_blank" rel="noopener">Заказать</a>
+            <div class="pizza-card__sizes" role="radiogroup" aria-label="Размер">
+              <label class="size"><input class="size__input" type="radio" name="size-nazran" value="30" checked><span class="size__label">30 см</span><span class="size__price" data-price="nazran" data-size="30">690 ₽</span></label>
+              <label class="size"><input class="size__input" type="radio" name="size-nazran" value="40"><span class="size__label">40 см</span><span class="size__price" data-price="nazran" data-size="40">950 ₽</span></label>
+            </div>
+            <button class="btn btn--red pizza-card__btn" type="button" data-add-to-cart="nazran">В корзину</button>
           </article>
         </div>
       </div>
@@ -487,6 +493,107 @@
       <span class="fab__toggle-text">🍕 Заказать</span>
     </button>
   </div>
+
+  <!-- ===== Уведомление «Добавлено в корзину» ===== -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ===== Корзина и оформление заказа =====
+       Три шага в одном окне: корзина → форма → выбор мессенджера.
+       Учебный каркас: настоящей оплаты нет, данные формы никуда не сохраняются. -->
+  <dialog class="cart" id="cart" aria-labelledby="cartTitle">
+    <div class="cart__head">
+      <button class="cart__back" id="cartBack" type="button" hidden>← Назад</button>
+      <h2 class="cart__title" id="cartTitle">Корзина</h2>
+      <button class="cart__close" id="cartClose" type="button" aria-label="Закрыть корзину">✕</button>
+    </div>
+
+    <!-- Шаг 1. Корзина -->
+    <div class="cart__view" data-view="cart">
+      <div class="cart__body">
+        <div class="cart__empty" id="cartEmpty">
+          <span class="cart__empty-icon" aria-hidden="true">🛒</span>
+          <p>В корзине пока пусто.</p>
+          <a href="#menu" class="btn btn--red btn--small">Выбрать пиццу</a>
+        </div>
+        <ul class="cart__items" id="cartItems"></ul>
+      </div>
+
+      <div class="cart__foot" id="cartFoot">
+        <p class="cart__promo">🎉 От 3 пицц 40 см — скидка 15% на все пиццы 40 см</p>
+        <dl class="cart__totals">
+          <div class="cart__row">
+            <dt>Сумма без скидки</dt>
+            <dd id="cartSubtotal">0 ₽</dd>
+          </div>
+          <div class="cart__row cart__row--discount" id="cartDiscountRow" hidden>
+            <dt>Скидка 15% на пиццы 40 см</dt>
+            <dd id="cartDiscount">−0 ₽</dd>
+          </div>
+          <div class="cart__row cart__row--total">
+            <dt>Итого</dt>
+            <dd id="cartTotal">0 ₽</dd>
+          </div>
+        </dl>
+        <p class="cart__taxi" id="cartTaxi" hidden>До 600 ₽ доставка по тарифу такси, стоимость уточнит оператор</p>
+        <button class="btn btn--red cart__action" id="checkoutButton" type="button">Оформить заказ</button>
+      </div>
+    </div>
+
+    <!-- Шаг 2. Форма заказа -->
+    <div class="cart__view" data-view="checkout" hidden>
+      <form class="cart__body checkout" id="checkoutForm" novalidate>
+        <div class="field">
+          <label class="field__label" for="orderName">Имя *</label>
+          <input class="field__input" id="orderName" name="name" type="text" autocomplete="name" required>
+          <p class="field__error">Напишите, как к вам обращаться</p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="orderPhone">Телефон *</label>
+          <input class="field__input" id="orderPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+          <p class="field__error">Укажите телефон — оператор перезвонит для подтверждения</p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="orderAddress">Адрес доставки *</label>
+          <input class="field__input" id="orderAddress" name="address" type="text" autocomplete="street-address" placeholder="Улица, дом, квартира" required>
+          <p class="field__error">Укажите адрес, куда привезти заказ</p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="orderComment">Комментарий <span class="field__optional">(необязательно)</span></label>
+          <textarea class="field__input field__input--area" id="orderComment" name="comment" rows="2" placeholder="Подъезд, домофон, сдача с…"></textarea>
+        </div>
+
+        <fieldset class="payment">
+          <legend class="field__label">Способ оплаты</legend>
+          <label class="payment__option"><input type="radio" name="payment" value="Наличными курьеру" checked> 💵 Наличными курьеру</label>
+          <label class="payment__option"><input type="radio" name="payment" value="Картой курьеру"> 💳 Картой курьеру</label>
+          <label class="payment__option"><input type="radio" name="payment" value="Онлайн"> 🌐 Онлайн</label>
+          <p class="payment__demo" id="paymentDemo" hidden>Демо: онлайн-оплата появится после подключения платёжной системы</p>
+        </fieldset>
+      </form>
+
+      <div class="cart__foot">
+        <div class="cart__row cart__row--total">
+          <span>Итого</span>
+          <span id="checkoutTotal">0 ₽</span>
+        </div>
+        <p class="cart__discount-note" id="checkoutDiscount" hidden></p>
+        <button class="btn btn--red cart__action" type="submit" form="checkoutForm">Заказать</button>
+      </div>
+    </div>
+
+    <!-- Шаг 3. Куда отправить заказ -->
+    <div class="cart__view" data-view="send" hidden>
+      <div class="cart__body send">
+        <p class="send__text">Куда отправить заказ? Мы получим сообщение и перезвоним для подтверждения.</p>
+        <a href="https://wa.me/79280000000" class="btn btn--wa send__btn" id="orderWhatsApp" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://t.me/pizza_nazran_demo" class="btn btn--tg send__btn" id="orderTelegram" target="_blank" rel="noopener">Telegram</a>
+        <p class="send__status" id="orderStatus" role="status"></p>
+      </div>
+    </div>
+  </dialog>
 
   <script src="script.js"></script>
 </body>
