@@ -775,6 +775,113 @@ a {
   text-decoration: underline;
 }
 
+/* ===== Блок 5. Отзывы ===== */
+.reviews {
+  padding: 80px 0;
+}
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Автор: круглый аватар, имя и звёзды */
+.review__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.review__avatar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.review__avatar--red { background: var(--red); }
+.review__avatar--green { background: var(--green); }
+.review__avatar--yellow { background: var(--yellow); color: var(--text); }
+.review__avatar--dark { background: var(--text); }
+
+.review__author {
+  min-width: 0;
+}
+
+.review__name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.review__stars {
+  margin: 2px 0 0;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: var(--yellow);
+}
+
+.review__star-empty {
+  color: var(--cream-dark);
+}
+
+/* Облачко сообщения с хвостиком к аватару */
+.review__bubble {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px 10px;
+  border-radius: 4px 20px 20px 20px;
+  background: var(--white);
+  box-shadow: 0 6px 24px rgba(43, 29, 22, 0.06);
+}
+
+.review__bubble::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  border-left: 12px solid var(--white);
+  border-top: 10px solid transparent;
+}
+
+.review__text {
+  flex: 1;
+  margin: 0 0 8px;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.review__time {
+  align-self: flex-end;
+  font-size: 13px;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+.review__check {
+  margin-left: 2px;
+  color: var(--green);
+  font-weight: 700;
+  letter-spacing: -3px;
+}
+
 /* ===== Адаптив ===== */
 @media (max-width: 1024px) {
   .header__phone {
@@ -864,6 +971,16 @@ a {
 
   .delivery__terms,
   .steps {
+    gap: 20px;
+  }
+
+  /* Отзывы — сетка 2×2 */
+  .reviews {
+    padding: 56px 0;
+  }
+
+  .reviews__grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 }
@@ -1040,6 +1157,48 @@ a {
   .steps {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  /* Отзывы: 2×2 компактнее, но текст не меньше 15px */
+  .reviews__grid {
+    gap: 12px;
+  }
+
+  .review {
+    gap: 12px;
+  }
+
+  .review__head {
+    gap: 8px;
+  }
+
+  .review__avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  .review__name {
+    font-size: 16px;
+  }
+
+  .review__stars {
+    font-size: 13px;
+    letter-spacing: 0;
+  }
+
+  .review__bubble {
+    padding: 12px 12px 8px;
+    border-radius: 4px 16px 16px 16px;
+  }
+
+  .review__text {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .review__time {
+    font-size: 12px;
   }
 }
 
