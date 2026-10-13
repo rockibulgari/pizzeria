@@ -582,6 +582,199 @@ a {
 .promo-card--yellow .promo-card__btn { background: var(--red); color: var(--white); }
 .promo-card--yellow .promo-card__btn:hover { background: var(--red-dark); }
 
+/* ===== Блок 4. Доставка и зоны ===== */
+.delivery {
+  padding: 80px 0;
+}
+
+.delivery__subtitle {
+  margin: 56px 0 24px;
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+}
+
+/* Условия доставки — две яркие плашки */
+.delivery__terms {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.terms-card {
+  position: relative;
+  padding: 32px 28px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.terms-card--green {
+  background: var(--green);
+  color: var(--white);
+  box-shadow: 0 14px 34px rgba(47, 125, 74, 0.3);
+}
+
+.terms-card--yellow {
+  background: var(--yellow);
+  color: var(--text);
+  box-shadow: 0 14px 34px rgba(255, 201, 60, 0.4);
+}
+
+/* Большой полупрозрачный значок в углу, как в акциях */
+.terms-card__icon {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 96px;
+  line-height: 1;
+  opacity: 0.25;
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+
+.terms-card__title {
+  position: relative;
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.terms-card__text {
+  position: relative;
+  margin: 0;
+  font-size: 18px;
+}
+
+/* Зоны доставки */
+.zones {
+  display: grid;
+  gap: 12px;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.zone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 6px 24px rgba(43, 29, 22, 0.06);
+}
+
+.zone__dot {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.zone__dot--green { background: var(--green); }
+.zone__dot--yellow { background: var(--yellow); }
+.zone__dot--red { background: var(--red); }
+
+.zone__info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.zone__name {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.zone__price {
+  font-size: 15px;
+  color: var(--text-soft);
+}
+
+.zone__time {
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: var(--cream);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.delivery__note {
+  margin: 16px 0 0;
+  font-size: 14px;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+/* Как заказать — 3 шага */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  position: relative;
+  padding: 28px 24px 24px;
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 6px 24px rgba(43, 29, 22, 0.06);
+  text-align: center;
+}
+
+/* Наклонный номер шага */
+.step__num {
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--red);
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 800;
+  transform: rotate(-6deg);
+}
+
+.step__icon {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.step__title {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.step__text {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-soft);
+}
+
+.step__link {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.step__link:hover {
+  text-decoration: underline;
+}
+
 /* ===== Адаптив ===== */
 @media (max-width: 1024px) {
   .header__phone {
@@ -662,6 +855,15 @@ a {
     grid-template-columns: 1fr;
     max-width: 520px;
     margin: 0 auto;
+    gap: 20px;
+  }
+
+  .delivery {
+    padding: 56px 0;
+  }
+
+  .delivery__terms,
+  .steps {
     gap: 20px;
   }
 }
@@ -790,6 +992,54 @@ a {
 
   .promo-card__terms {
     margin-bottom: 18px;
+  }
+
+  /* Доставка: условия и шаги — друг под другом */
+  .delivery__subtitle {
+    margin: 40px 0 20px;
+  }
+
+  .delivery__terms {
+    grid-template-columns: 1fr;
+  }
+
+  .terms-card {
+    padding: 24px 20px;
+  }
+
+  .terms-card__icon {
+    font-size: 72px;
+  }
+
+  .terms-card__title {
+    font-size: 22px;
+  }
+
+  .terms-card__text {
+    font-size: 16px;
+  }
+
+  .zone {
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .zone__name {
+    font-size: 17px;
+  }
+
+  .zone__price {
+    font-size: 13px;
+  }
+
+  .zone__time {
+    padding: 6px 10px;
+    font-size: 15px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
 
