@@ -83,6 +83,12 @@ document.querySelectorAll('[data-price]').forEach((priceEl) => {
   priceEl.textContent = formatPrice(pizza.prices[priceEl.dataset.size]);
 });
 
+// Стикер на первом экране: «от …» — самая низкая цена из списка PIZZAS
+const minPrice = Math.min(...PIZZAS.flatMap((pizza) => Object.values(pizza.prices)));
+document.querySelectorAll('[data-min-price]').forEach((stickerEl) => {
+  stickerEl.textContent = 'от ' + formatPrice(minPrice);
+});
+
 // ===== Блок 6. Контакты: карта =====
 // На сенсорных экранах поверх карты лежит накладка, чтобы карта не мешала листать страницу.
 // Нажали на накладку — карту можно двигать. Нажали мимо карты или ушли от неё — накладка возвращается.
