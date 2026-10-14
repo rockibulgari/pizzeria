@@ -1616,11 +1616,12 @@ body:has(.cart[open]) {
   font-size: 20px;
 }
 
-.send__status {
-  margin: 4px 0 0;
-  font-size: 16px;
-  color: var(--green);
-  font-weight: 500;
+/* Подсказка под кнопкой бота */
+.send__hint {
+  margin: -4px 0 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--text-soft);
   text-align: center;
 }
 

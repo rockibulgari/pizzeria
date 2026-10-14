@@ -27,22 +27,6 @@ function formatPrice(rubles) {
   return rubles.toLocaleString('ru-RU') + ' ₽';
 }
 
-// Копируем текст. Если современный способ недоступен (например, файл открыт с диска) — запасной старый
-function copyText(text) {
-  if (navigator.clipboard && window.isSecureContext) {
-    return navigator.clipboard.writeText(text);
-  }
-  const field = document.createElement('textarea');
-  field.value = text;
-  field.style.position = 'fixed';
-  field.style.opacity = '0';
-  document.body.appendChild(field);
-  field.select();
-  const copied = document.execCommand('copy');
-  field.remove();
-  return copied ? Promise.resolve() : Promise.reject();
-}
-
 // ===== Блок 0. Шапка =====
 
 const header = document.getElementById('header');
@@ -222,7 +206,7 @@ function calculateOrder() {
   return { items, subtotal, discount, total };
 }
 
-// Готовый текст заказа для WhatsApp и Telegram
+// Готовый текст заказа для WhatsApp
 function makeOrderText({ items, subtotal, discount, total }) {
   const lines = ['Здравствуйте! Хочу заказать:'];
   items.forEach((item, index) => {
@@ -554,11 +538,10 @@ checkoutForm.addEventListener('change', (event) => {
   }
 });
 
-// --- Отправка: WhatsApp или Telegram ---
+// --- Отправка: WhatsApp или Telegram-бот ---
+// Кнопка бота — обычная ссылка в index.html, корзину сайта она не передаёт
 
 const orderWhatsApp = document.getElementById('orderWhatsApp');
-const orderTelegram = document.getElementById('orderTelegram');
-const orderStatus = document.getElementById('orderStatus');
 let cartOrderText = '';
 
 // Полный текст заказа: пиццы, скидка, итог (из makeOrderText) и данные из формы
@@ -588,19 +571,7 @@ checkoutForm.addEventListener('submit', (event) => {
 
   cartOrderText = makeCartOrderText(calculateOrder());
   orderWhatsApp.href = WHATSAPP_URL + '?text=' + encodeURIComponent(cartOrderText);
-  orderStatus.textContent = '';
   showStep('send');
-});
-
-// Telegram: копируем текст заказа, а сама ссылка открывает наш Telegram
-orderTelegram.addEventListener('click', () => {
-  copyText(cartOrderText)
-    .then(() => {
-      orderStatus.textContent = 'Текст заказа скопирован — вставьте его в чат';
-    })
-    .catch(() => {
-      orderStatus.textContent = 'Не получилось скопировать. Отправьте заказ через WhatsApp или позвоните нам.';
-    });
 });
 
 // Первый показ: число на значке корзины и надпись на плавающей кнопке
