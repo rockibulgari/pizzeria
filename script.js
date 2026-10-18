@@ -22,6 +22,9 @@ const FREE_DELIVERY_FROM = 600; // меньше 600 ₽ — доставка п�
 // Ссылка на наш WhatsApp: к ней приклеиваем текст заказа
 const WHATSAPP_URL = 'https://wa.me/79280000000';
 
+// Вебхук Google Apps Script: сюда дополнительно уходит каждая заявка с сайта
+const ORDER_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxe9t4jRbu5L-JkazqQC2eqFqC253toqqe4YT4_Vxg56j73Qqgbk1EslS2oN9-9rWVylQ/exec';
+
 // Красиво пишем сумму: 1690 → «1 690 ₽»
 function formatPrice(rubles) {
   return rubles.toLocaleString('ru-RU') + ' ₽';
@@ -558,6 +561,30 @@ function makeCartOrderText(result) {
   return lines.join('\n');
 }
 
+// Заявка на вебхук Google: имя, телефон, состав одной строкой и итог со скидкой.
+// Без Content-Type и с mode: 'no-cors' — иначе браузер заблокирует запрос к Google.
+// Ответ в режиме no-cors прочитать нельзя, поэтому ловим только сетевые ошибки —
+// оформление заказа от них не ломается.
+function sendOrderToWebhook({ items, total }) {
+  if (!ORDER_WEBHOOK_URL.startsWith('https://')) return; // адрес вебхука ещё не вписан
+  if (document.getElementById('orderWebsite').value !== '') return; // поле-ловушка заполнено — это бот
+
+  const data = {
+    name: orderName.value.trim(),
+    phone: orderPhone.value.trim(),
+    order: items.map((item) => `${item.name} ${item.size} см × ${item.quantity}`).join(', '),
+    total,
+  };
+
+  fetch(ORDER_WEBHOOK_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: JSON.stringify(data),
+  }).catch((error) => {
+    console.error('Не удалось отправить заявку на вебхук:', error);
+  });
+}
+
 // «Заказать»: проверяем имя, телефон и адрес. Всё заполнено — показываем выбор мессенджера
 checkoutForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -569,7 +596,10 @@ checkoutForm.addEventListener('submit', (event) => {
     return;
   }
 
-  cartOrderText = makeCartOrderText(calculateOrder());
+  const result = calculateOrder();
+  sendOrderToWebhook(result);
+
+  cartOrderText = makeCartOrderText(result);
   orderWhatsApp.href = WHATSAPP_URL + '?text=' + encodeURIComponent(cartOrderText);
   showStep('send');
 });

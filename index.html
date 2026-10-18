@@ -572,6 +572,12 @@
           <label class="payment__option"><input type="radio" name="payment" value="Онлайн"> 🌐 Онлайн</label>
           <p class="payment__demo" id="paymentDemo" hidden>Демо: онлайн-оплата появится после подключения платёжной системы</p>
         </fieldset>
+
+        <!-- Ловушка для спам-ботов: человек это поле не видит, бот заполняет — тогда заявку не шлём (script.js) -->
+        <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+          <label for="orderWebsite">Сайт</label>
+          <input id="orderWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
       </form>
 
       <div class="cart__foot">
@@ -595,6 +601,6 @@
     </div>
   </dialog>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
