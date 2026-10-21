@@ -252,35 +252,11 @@ a {
   position: relative;
 }
 
-/* Заглушка для фото */
-.photo-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  aspect-ratio: 1 / 1;
-  border: 3px dashed rgba(200, 50, 43, 0.35);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%, var(--cream) 0 55%, transparent 56%),
-    var(--cream-dark);
-  color: var(--text-soft);
-}
-
-.photo-placeholder__icon {
-  font-size: 96px;
-  line-height: 1;
-}
-
-.photo-placeholder__text {
-  font-size: 16px;
-}
-
-/* Настоящее фото, когда оно появится */
+/* Фото пиццы на первом экране */
 .hero__photo {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 50%;
@@ -365,24 +341,11 @@ a {
   margin-bottom: 20px;
 }
 
-/* Заглушка в карточке — та же, что на первом экране, только меньше */
-.photo-placeholder--card {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.photo-placeholder--card .photo-placeholder__icon {
-  font-size: 64px;
-}
-
-.photo-placeholder--card .photo-placeholder__text {
-  font-size: 14px;
-}
-
-/* Настоящее фото в карточке, когда оно появится */
+/* Фото пиццы в карточке */
 .pizza-card__img {
   display: block;
   width: 80%;
+  height: auto;
   margin: 0 auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -539,6 +502,17 @@ a {
   box-shadow: 0 14px 34px rgba(47, 125, 74, 0.3);
 }
 
+/* Фото полосой во всю ширину карточки, над наклейкой */
+.promo-card__img {
+  display: block;
+  width: calc(100% + 56px);
+  max-width: none;
+  margin: -40px -28px 24px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+}
+
 /* Наклонная наклейка «Студентам», «Семьям» */
 .promo-card__label {
   align-self: flex-start;
@@ -550,18 +524,6 @@ a {
   font-size: 15px;
   font-weight: 700;
   transform: rotate(-3deg);
-}
-
-/* Большой полупрозрачный значок в углу */
-.promo-card__icon {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  font-size: 110px;
-  line-height: 1;
-  opacity: 0.25;
-  transform: rotate(12deg);
-  pointer-events: none;
 }
 
 .promo-card__title {
@@ -1759,18 +1721,6 @@ body:has(.cart[open]) {
     max-width: 200px;
   }
 
-  .photo-placeholder {
-    gap: 6px;
-  }
-
-  .photo-placeholder__icon {
-    font-size: 48px;
-  }
-
-  .photo-placeholder__text {
-    font-size: 12px;
-  }
-
   .hero__sticker {
     right: -24px;
     width: 80px;
@@ -1798,16 +1748,8 @@ body:has(.cart[open]) {
     margin-bottom: 10px;
   }
 
-  .photo-placeholder--card {
+  .pizza-card__img {
     width: 75%;
-  }
-
-  .photo-placeholder--card .photo-placeholder__icon {
-    font-size: 36px;
-  }
-
-  .photo-placeholder--card .photo-placeholder__text {
-    font-size: 11px;
   }
 
   .tag {
@@ -1858,8 +1800,9 @@ body:has(.cart[open]) {
     padding: 28px 20px 20px;
   }
 
-  .promo-card__icon {
-    font-size: 80px;
+  .promo-card__img {
+    width: calc(100% + 40px);
+    margin: -28px -20px 18px;
   }
 
   .promo-card__title {

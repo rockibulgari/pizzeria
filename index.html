@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -72,12 +72,7 @@
         </div>
 
         <div class="hero__visual">
-          <!-- Заглушка фото. Чтобы поставить настоящее фото, замените этот div на:
-               <img src="img/hero-pizza.jpg" alt="Пицца Пепперони" class="hero__photo"> -->
-          <div class="photo-placeholder" role="img" aria-label="Здесь будет фото пиццы">
-            <span class="photo-placeholder__icon" aria-hidden="true">🍕</span>
-            <span class="photo-placeholder__text">Здесь будет фото пиццы</span>
-          </div>
+          <img src="images/hero.webp?v=2" alt="Три пиццы из печи на деревянных досках: овощная, кальцоне и «Четыре сыра»" class="hero__photo" width="1000" height="1000" fetchpriority="high">
 
           <div class="hero__sticker">
             <span class="hero__sticker-big" data-min-price>от 450 ₽</span>
@@ -95,16 +90,11 @@
           <p class="section-subtitle">Два размера: 30 и 40 см. Доставка бесплатно от 600 ₽.</p>
         </div>
 
-        <!-- Чтобы поставить настоящее фото, замените div.photo-placeholder в карточке на:
-             <img src="img/margarita.jpg" alt="Пицца Маргарита" class="pizza-card__img"> -->
         <!-- Размер выбирается кнопками 30 / 40 см, кнопка «В корзину» берёт выбранный размер (script.js) -->
         <div class="menu__grid">
           <article class="pizza-card">
             <div class="pizza-card__photo">
-              <div class="photo-placeholder photo-placeholder--card" role="img" aria-label="Здесь будет фото пиццы Маргарита">
-                <span class="photo-placeholder__icon" aria-hidden="true">🍕</span>
-                <span class="photo-placeholder__text">Фото скоро</span>
-              </div>
+              <img src="images/margherita.webp?v=2" alt="Пицца Маргарита: томатный соус, моцарелла и листья базилика" class="pizza-card__img" width="600" height="600" loading="lazy">
             </div>
             <h3 class="pizza-card__title">Маргарита</h3>
             <p class="pizza-card__text">Томатный соус, моцарелла, базилик</p>
@@ -117,13 +107,10 @@
 
           <article class="pizza-card">
             <div class="pizza-card__photo">
-              <div class="photo-placeholder photo-placeholder--card" role="img" aria-label="Здесь будет фото пиццы Грибная">
-                <span class="photo-placeholder__icon" aria-hidden="true">🍕</span>
-                <span class="photo-placeholder__text">Фото скоро</span>
-              </div>
+              <img src="images/mushroom.webp?v=2" alt="Грибная пицца с шампиньонами, сладким перцем и черри" class="pizza-card__img" width="600" height="600" loading="lazy">
             </div>
             <h3 class="pizza-card__title">Грибная</h3>
-            <p class="pizza-card__text">Сливочный соус, шампиньоны, моцарелла</p>
+            <p class="pizza-card__text">Томатный соус, шампиньоны, сладкий перец, черри, моцарелла</p>
             <div class="pizza-card__sizes" role="radiogroup" aria-label="Размер">
               <label class="size"><input class="size__input" type="radio" name="size-mushroom" value="30" checked><span class="size__label">30 см</span><span class="size__price" data-price="mushroom" data-size="30">490 ₽</span></label>
               <label class="size"><input class="size__input" type="radio" name="size-mushroom" value="40"><span class="size__label">40 см</span><span class="size__price" data-price="mushroom" data-size="40">740 ₽</span></label>
@@ -134,10 +121,7 @@
           <article class="pizza-card">
             <div class="pizza-card__photo">
               <ul class="pizza-card__tags"><li class="tag tag--hit">Хит</li></ul>
-              <div class="photo-placeholder photo-placeholder--card" role="img" aria-label="Здесь будет фото пиццы Пепперони">
-                <span class="photo-placeholder__icon" aria-hidden="true">🍕</span>
-                <span class="photo-placeholder__text">Фото скоро</span>
-              </div>
+              <img src="images/pepperoni.webp?v=2" alt="Пицца Пепперони с красным перцем и базиликом" class="pizza-card__img" width="600" height="600" loading="lazy">
             </div>
             <h3 class="pizza-card__title">Пепперони</h3>
             <p class="pizza-card__text">Пепперони из говядины, моцарелла</p>
@@ -151,10 +135,7 @@
           <article class="pizza-card">
             <div class="pizza-card__photo">
               <ul class="pizza-card__tags"><li class="tag tag--new">Новинка</li></ul>
-              <div class="photo-placeholder photo-placeholder--card" role="img" aria-label="Здесь будет фото пиццы Четыре сыра">
-                <span class="photo-placeholder__icon" aria-hidden="true">🍕</span>
-                <span class="photo-placeholder__text">Фото скоро</span>
-              </div>
+              <img src="images/four-cheese.webp?v=2" alt="Пицца «Четыре сыра» с запечённым сыром дорблю" class="pizza-card__img" width="600" height="600" loading="lazy">
             </div>
             <h3 class="pizza-card__title">Четыре сыра</h3>
             <p class="pizza-card__text">Моцарелла, чеддер, пармезан, дорблю</p>
@@ -168,10 +149,7 @@
           <article class="pizza-card">
             <div class="pizza-card__photo">
               <ul class="pizza-card__tags"><li class="tag tag--hit">Хит</li></ul>
-              <div class="photo-placeholder photo-placeholder--card" role="img" aria-label="Здесь будет фото пиццы Мясная">
-                <span class="photo-placeholder__icon" aria-hidden="true">🍕</span>
-                <span class="photo-placeholder__text">Фото скоро</span>
-              </div>
+              <img src="images/meat.webp?v=2" alt="Мясная пицца с рубленым мясом, красным луком и зеленью" class="pizza-card__img" width="600" height="600" loading="lazy">
             </div>
             <h3 class="pizza-card__title">Мясная</h3>
             <p class="pizza-card__text">Говядина, курица, колбаски, лук</p>
@@ -185,10 +163,7 @@
           <article class="pizza-card">
             <div class="pizza-card__photo">
               <ul class="pizza-card__tags"><li class="tag tag--spicy">🌶 Острая</li></ul>
-              <div class="photo-placeholder photo-placeholder--card" role="img" aria-label="Здесь будет фото пиццы Фирменная «Назрань»">
-                <span class="photo-placeholder__icon" aria-hidden="true">🍕</span>
-                <span class="photo-placeholder__text">Фото скоро</span>
-              </div>
+              <img src="images/nazran.webp?v=2" alt="Острая фирменная пицца «Назрань» с красным перцем и халапеньо" class="pizza-card__img" width="600" height="600" loading="lazy">
             </div>
             <h3 class="pizza-card__title">Фирменная «Назрань»</h3>
             <p class="pizza-card__text">Курица, говядина, перец, зелень, острый соус</p>
@@ -212,8 +187,8 @@
 
         <div class="promo__grid">
           <article class="promo-card promo-card--red">
+            <img src="images/promo-student.webp" alt="Кальцоне с салатом и двумя соусами на деревянной доске" class="promo-card__img" width="800" height="450" loading="lazy">
             <span class="promo-card__label">Студентам</span>
-            <span class="promo-card__icon" aria-hidden="true">🎓</span>
             <h3 class="promo-card__title">Студенческое комбо</h3>
             <p class="promo-card__text">Любая пицца до 550 ₽ + напиток</p>
             <p class="promo-card__price">499 ₽</p>
@@ -222,8 +197,8 @@
           </article>
 
           <article class="promo-card promo-card--yellow">
+            <img src="images/promo-company.webp" alt="Три пиццы на деревянных досках и соусы — набор для компании" class="promo-card__img" width="800" height="450" loading="lazy">
             <span class="promo-card__label">Для компании</span>
-            <span class="promo-card__icon" aria-hidden="true">🎉</span>
             <h3 class="promo-card__title">Набор для компании</h3>
             <p class="promo-card__text">3 пиццы 40 см</p>
             <p class="promo-card__price">−15%</p>
@@ -232,8 +207,8 @@
           </article>
 
           <article class="promo-card promo-card--green">
+            <img src="images/promo-family.webp" alt="Овощная пицца, кальцоне и «Четыре сыра» — семейный набор" class="promo-card__img" width="800" height="450" loading="lazy">
             <span class="promo-card__label">Семьям</span>
-            <span class="promo-card__icon" aria-hidden="true">👨‍👩‍👧‍👦</span>
             <h3 class="promo-card__title">Семейный набор</h3>
             <p class="promo-card__text">3 пиццы + 2 напитка</p>
             <p class="promo-card__price">1&nbsp;690 ₽</p>
@@ -601,6 +576,6 @@
     </div>
   </dialog>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>
